@@ -13,18 +13,15 @@
     <?php
     require 'connect.php';
 
-    // ตรวจสอบว่ามีการส่งค่า CustomerID มาหรือไม่
     if (isset($_GET['CustomerID'])) {
         $customerID = $_GET['CustomerID'];
 
-        // 1. ดึงข้อมูลลูกค้าคนปัจจุบัน
         $sql_customer = "SELECT * FROM customer WHERE CustomerID = :id";
         $stmt = $conn->prepare($sql_customer);
         $stmt->bindParam(':id', $customerID);
         $stmt->execute();
         $customer = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // 2. ดึงข้อมูลประเทศทั้งหมดมาแสดงใน Dropdown
         $sql_countries = "SELECT CountryCode, CountryName FROM country ORDER BY CountryName ASC";
         $stmt_countries = $conn->prepare($sql_countries);
         $stmt_countries->execute();

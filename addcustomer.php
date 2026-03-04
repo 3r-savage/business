@@ -27,14 +27,12 @@
 
         try {
             if ($stmt->execute()) {
-                // ถ้าเพิ่มสำเร็จ ให้โชว์ Alert แล้วกลับไปหน้า index.php
                 echo "<script>
                         alert('เพิ่มข้อมูลลูกค้าสำเร็จ!');
                         window.location.href = 'index.php';
                       </script>";
             }
         } catch (PDOException $e) {
-            // ถ้ามี Error (เช่น รหัสลูกค้าซ้ำ) ให้โชว์ Alert แล้วย้อนกลับ
             echo "<script>
                     alert('เกิดข้อผิดพลาด: " . $e->getMessage() . "');
                     window.history.back();

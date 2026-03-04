@@ -34,7 +34,6 @@ if (!empty($_POST['CountryCode']) && !empty($_POST['CountryName'])):
         $stmt->bindParam(':CountryName', $_POST['CountryName']);
 
         if ($stmt->execute()):
-            // ถ้าเพิ่มสำเร็จ ให้โชว์ Alert แล้วกลับไปหน้า index.php
             echo "<script>
                     alert('เพิ่มข้อมูลประเทศสำเร็จ!');
                     window.location.href = 'index.php';
@@ -43,7 +42,6 @@ if (!empty($_POST['CountryCode']) && !empty($_POST['CountryName'])):
             echo "<script>alert('ไม่สามารถเพิ่มข้อมูลประเทศได้');</script>";
         endif;
     } catch (PDOException $e) {
-        // ดักจับ Error เช่น กรณีใส่รหัสประเทศซ้ำ
         echo "<script>
                 alert('เกิดข้อผิดพลาด: " . $e->getMessage() . "');
                 window.history.back();
